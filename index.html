@@ -1,769 +1,407 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insign Tech Solutions - Leading IT Services in Kerala</title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <title>Insign Tech - Under Maintenance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #f59e0b;
-            --dark-color: #1f2937;
-            --light-color: #f8fafc;
+            --bg-color: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-primary: #06b6d4;
+            /* Cyan */
+            --accent-secondary: #3b82f6;
+            /* Blue */
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --border-color: rgba(241, 245, 249, 0.8);
         }
-        
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            padding-top: 76px; /* Add this to prevent navbar overlap */
-        }
-        
-        /* Custom Navbar */
-        .navbar {
-            background: rgba(255, 255, 255, 0.98); /* Make more opaque on mobile */
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            min-height: 76px; /* Ensure consistent height */
-        }
-        
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.3rem; /* Slightly smaller on mobile */
-            color: var(--primary-color) !important;
-        }
-        
-        .nav-link {
-            font-weight: 500;
-            color: var(--dark-color) !important;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: var(--primary-color) !important;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            min-height: calc(100vh - 76px); /* Subtract navbar height */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
             position: relative;
-            overflow: hidden;
-            padding: 40px 0; /* Add padding for mobile */
         }
-        
-        .hero::before {
-            content: '';
+
+        /* Ambient gradient background glows */
+        .glow-bg {
             position: absolute;
+            width: 100%;
+            height: 100%;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
-            background-size: cover;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
         }
-        
-        .hero-content {
+
+        .glow-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.45;
+        }
+
+        .glow-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        .glow-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        /* Container & Card */
+        .container {
             position: relative;
             z-index: 2;
+            text-align: center;
+            padding: 3rem 2.5rem;
+            max-width: 580px;
+            width: 90%;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 32px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 100px rgba(15, 23, 42, 0.05), 0 2px 10px rgba(15, 23, 42, 0.02);
+            animation: cardAppear 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive font size */
-            font-weight: 700;
-            color: white;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-            line-height: 1.2; /* Better line height for mobile */
-        }
-        
-        .hero p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem); /* Responsive font size */
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-        
-        .btn-custom {
-            background: var(--accent-color);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
+
+        .logo-container {
+            margin-bottom: 2.5rem;
             display: inline-block;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.4s both;
         }
-        
-        .btn-custom:hover {
-            background: #d97706;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
-            color: white;
+
+        .logo {
+            max-height: 50px;
+            width: auto;
+            border-radius: 8px;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background: var(--light-color);
+
+        .logo:hover {
+            transform: scale(1.05);
         }
-        
-        .service-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+
+        /* Creative Animated Illustration */
+        .illustration-container {
+            position: relative;
+            width: 280px;
+            height: 200px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .scene {
+            width: 100%;
             height: 100%;
-            border: none;
         }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+
+        /* Floating isometric block styling */
+        .iso-block {
+            transform-origin: center;
+            animation: float 4s ease-in-out infinite;
         }
-        
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: white;
-            font-size: 2rem;
+
+        .iso-block-shadow {
+            transform-origin: center;
+            animation: shadowScale 4s ease-in-out infinite;
+            opacity: 0.15;
         }
-        
-        .service-card h4 {
-            color: var(--dark-color);
-            margin-bottom: 15px;
-            font-weight: 600;
+
+        /* Timing adjustments for different parts */
+        .delay-1 {
+            animation-delay: -1s;
         }
-        
-        .service-card p {
-            color: #666;
-            line-height: 1.6;
+
+        .delay-2 {
+            animation-delay: -2s;
         }
-        
-        /* About Section */
-        .about {
-            padding: 100px 0;
+
+        .pulse-light {
+            animation: pulseGlow 2s ease-in-out infinite alternate;
         }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
+
+        .connector-line {
+            stroke-dasharray: 8;
+            animation: dash 15s linear infinite;
         }
-        
-        .about-text h2 {
-            color: var(--dark-color);
-            margin-bottom: 20px;
-            font-weight: 700;
+
+        /* Text & Headings */
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            line-height: 1.2;
         }
-        
-        .about-text p {
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.8;
+
+        h1 span {
+            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        .stats {
-            display: flex;
-            gap: 30px;
-            margin-top: 30px;
+
+        p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+            max-width: 440px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: block;
-        }
-        
-        .stat-label {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 100px 0;
-            background: var(--dark-color);
-            color: white;
-        }
-        
-        .contact h2 {
-            margin-bottom: 50px;
-            text-align: center;
-        }
-        
-        .contact-info {
-            background: rgba(255,255,255,0.1);
-            padding: 40px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .contact-item i {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-        }
-        
-        .contact-form {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            color: var(--dark-color);
-        }
-        
-        .form-control {
-            border: 2px solid #e5e7eb;
+
+        /* Dynamic Progress Bar */
+        .progress-bar-container {
+            width: 100%;
+            max-width: 320px;
+            height: 6px;
+            background: #f1f5f9;
             border-radius: 10px;
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            transition: border-color 0.3s ease;
+            margin: 0 auto 2.5rem;
+            overflow: hidden;
+            position: relative;
         }
-        
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+
+        .progress-bar {
+            height: 100%;
+            width: 45%;
+            background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+            border-radius: 10px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: progressMove 2.5s ease-in-out infinite;
         }
-        
-        /* Footer */
+
+        /* Footer Info */
         .footer {
-            background: #111827;
-            color: white;
-            padding: 30px 0;
-            text-align: center;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 1.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
         }
-        
-        /* Animations */
-        @keyframes fadeInUp {
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .footer-item svg {
+            width: 14px;
+            height: 14px;
+            fill: #94a3b8;
+        }
+
+        /* Keyframes Animations */
+        @keyframes cardAppear {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(30px) scale(0.98);
             }
+
             to {
                 opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
                 transform: translateY(0);
             }
-        }
-        
-        .fade-in {
-            animation: fadeInUp 0.8s ease;
-        }
-        
-        .navbar-toggler {
-            border: none;
-            padding: 4px 8px;
-        }
 
-        .navbar-toggler:focus {
-            box-shadow: none;
-        }
-
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            body {
-                padding-top: 70px; /* Adjust for smaller navbar on mobile */
-            }
-            
-            .navbar-brand {
-                font-size: 1.2rem;
-            }
-            
-            .hero {
-                min-height: calc(100vh - 70px);
-                text-align: center;
-                padding: 60px 0 40px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-                margin-bottom: 2.5rem;
-            }
-            
-            .about-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 30px;
-            }
-            
-            .stats {
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-            
-            .stat-item {
-                min-width: 120px;
-            }
-            
-            .service-card {
-                margin-bottom: 20px;
-            }
-            
-            .contact-info,
-            .contact-form {
-                padding: 30px 20px;
-            }
-            
-            .contact-item {
-                margin-bottom: 25px;
-            }
-            
-            .contact-item i {
-                width: 40px;
-                height: 40px;
-                margin-right: 15px;
+            50% {
+                transform: translateY(-12px);
             }
         }
 
-        @media (max-width: 576px) {
-            body {
-                padding-top: 65px;
+        @keyframes shadowScale {
+
+            0%,
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 0.15;
             }
-            
-            .hero {
-                padding: 40px 0 30px;
+
+            50% {
+                transform: scale(0.85) translateY(4px);
+                opacity: 0.08;
             }
-            
-            .hero h1 {
-                font-size: 1.8rem;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                opacity: 0.3;
             }
-            
-            .hero p {
-                font-size: 1rem;
+
+            100% {
+                opacity: 1;
             }
-            
-            .btn-custom {
-                padding: 10px 25px;
-                font-size: 0.9rem;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -100;
             }
-            
-            .services,
-            .about,
-            .contact {
-                padding: 60px 0;
+        }
+
+        @keyframes progressMove {
+            0% {
+                left: -45%;
             }
-            
-            .display-4 {
-                font-size: 2rem;
+
+            50% {
+                left: 100%;
             }
-            
-            .display-5 {
-                font-size: 1.8rem;
-            }
-            
-            .stats {
-                gap: 15px;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-            
-            .service-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
-            
-            .contact-info,
-            .contact-form {
-                padding: 25px 15px;
+
+            100% {
+                left: 100%;
             }
         }
     </style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#home">
-                <!-- <i class="fas fa-code me-2"></i> -->
-                 <img src="./title1.png" width="170" height="80"/>
-                <!-- Insign Tech -->
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-    <a class="nav-link" href="#products">Products</a>
-</li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="glow-bg">
+        <div class="glow-circle glow-1"></div>
+        <div class="glow-circle glow-2"></div>
+    </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 hero-content">
-                    <h1>Insign Tech Solutions</h1>
-                    <p>Transforming businesses through innovative technology solutions. We specialize in web development, mobile apps, digital marketing, and cutting-edge AI tools.</p>
-                    <a href="#services" class="btn-custom">Explore Our Services</a>
-                </div>
-                <div class="col-lg-6 text-center">
-                    <div style="font-size: 15rem; color: rgba(255,255,255,0.1);">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-12 text-center">
-                    <h2 class="display-4 fw-bold mb-3">Our Services</h2>
-                    <p class="lead">Comprehensive IT solutions tailored to your business needs</p>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="service-card text-center">
-                        <div class="service-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <h4>Web Development</h4>
-                        <p>Custom websites and web applications built with modern technologies for optimal performance and user experience.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="service-card text-center">
-                        <div class="service-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h4>App Development</h4>
-                        <p>Native and cross-platform mobile applications that engage users and drive business growth.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="service-card text-center">
-                        <div class="service-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h4>Digital Marketing</h4>
-                        <p>Strategic digital marketing campaigns to boost your online presence and reach your target audience effectively.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="service-card text-center">
-                        <div class="service-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h4>AI Tools Development</h4>
-                        <p>Cutting-edge artificial intelligence solutions to automate processes and enhance business intelligence.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-<section id="products" class="services" style="background: #f1f5f9;">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-12 text-center">
-                <h2 class="display-4 fw-bold mb-3">Our Products</h2>
-                <p class="lead">Explore our innovative products designed to empower your business</p>
-            </div>
+        <div class="logo-container">
+            <img src="assets/logo.PNG" alt="Insign Tech" class="logo">
         </div>
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="service-card text-center">
-                       <div class="service-icon" style="background: none;">
-                <img src="fleetq_bg.png" alt="fleetQ Logo" style="width:120px; height:auto;" />
+
+        <!-- Creative Interactive Isometric Maintenance Illustration -->
+        <div class="illustration-container">
+            <svg class="scene" viewBox="0 0 300 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Base Grid Lines -->
+                <path d="M50 150 L150 200 L250 150 M150 200 L150 120" stroke="#e2e8f0" stroke-width="1.5"
+                    stroke-linecap="round" />
+
+                <!-- Connection lines pulsing -->
+                <path class="connector-line" d="M90 130 L150 160 L210 130" stroke="url(#lineGradient)"
+                    stroke-width="1.5" stroke-linecap="round" />
+
+                <!-- Floating Base Shadow -->
+                <ellipse class="iso-block-shadow" cx="150" cy="180" rx="40" ry="12" fill="#3b82f6" />
+
+                <!-- Left floating block -->
+                <g class="iso-block delay-1">
+                    <!-- Front Left Face -->
+                    <path d="M60 110 L95 128 L95 148 L60 130 Z" fill="#60a5fa" opacity="0.85" />
+                    <!-- Front Right Face -->
+                    <path d="M95 128 L130 110 L130 130 L95 148 Z" fill="#2563eb" />
+                    <!-- Top Face -->
+                    <path d="M60 110 L95 92 L130 110 L95 128 Z" fill="#93c5fd" />
+                </g>
+
+                <!-- Right floating block -->
+                <g class="iso-block delay-2">
+                    <!-- Front Left Face -->
+                    <path d="M170 110 L205 128 L205 148 L170 130 Z" fill="#22d3ee" opacity="0.85" />
+                    <!-- Front Right Face -->
+                    <path d="M205 128 L240 110 L240 130 L205 148 Z" fill="#0891b2" />
+                    <!-- Top Face -->
+                    <path d="M170 110 L205 92 L240 110 L205 128 Z" fill="#67e8f9" />
+                </g>
+
+                <!-- Center Floating Core Cube -->
+                <g class="iso-block">
+                    <!-- Front Left Face -->
+                    <path d="M115 70 L150 88 L150 118 L115 100 Z" fill="url(#cyanGrad)" />
+                    <!-- Front Right Face -->
+                    <path d="M150 88 L185 70 L185 100 L150 118 Z" fill="url(#blueGrad)" />
+                    <!-- Top Face -->
+                    <path d="M115 70 L150 52 L185 70 L150 88 Z" fill="#a5f3fc" />
+                    <!-- Glowing Core Indicator -->
+                    <circle class="pulse-light" cx="150" cy="70" r="5" fill="#ffffff"
+                        filter="drop-shadow(0 0 6px #06b6d4)" />
+                </g>
+
+                <!-- Small floaters -->
+                <g class="iso-block delay-1">
+                    <circle cx="95" cy="65" r="3" fill="#3b82f6" />
+                    <path d="M95 65 L95 80" stroke="#3b82f6" stroke-width="1" stroke-dasharray="2 2" />
+                </g>
+                <g class="iso-block delay-2">
+                    <circle cx="205" cy="65" r="3" fill="#06b6d4" />
+                    <path d="M205 65 L205 80" stroke="#06b6d4" stroke-width="1" stroke-dasharray="2 2" />
+                </g>
+
+                <!-- Gradients -->
+                <defs>
+                    <linearGradient id="cyanGrad" x1="115" y1="70" x2="150" y2="118" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#06b6d4" />
+                        <stop offset="100%" stop-color="#0891b2" />
+                    </linearGradient>
+                    <linearGradient id="blueGrad" x1="150" y1="88" x2="185" y2="100" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#3b82f6" />
+                        <stop offset="100%" stop-color="#1d4ed8" />
+                    </linearGradient>
+                    <linearGradient id="lineGradient" x1="90" y1="130" x2="210" y2="130" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2" />
+                        <stop offset="50%" stop-color="#06b6d4" />
+                        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.2" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <h1>Under <span>Maintenance</span></h1>
+        <p>We are currently upgrading and fine-tuning our digital core to provide you with a more powerful and seamless
+            experience.</p>
+
+        <!-- Animated Progress Indicator -->
+        <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-item">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+                <span>info@insign.in</span>
             </div>
-                    <h4>FleetQ</h4>
-               <p>Comprehensive fleet management platform for real-time vehicle tracking, analytics, and operational efficiency.</p>
-       
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="service-card text-center">
-                        <div class="service-icon" style="background: none;">
-                <img src="visit1.png" alt="cms Logo" style="width:120px; height:auto;" />
-            </div>
-                    <h4>Visit Management</h4>
-                   <p>Smart solution to schedule, monitor, and record visitor activities for enhanced security and seamless entry management.</p>
-     </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="service-card text-center">
-                     <div class="service-icon" style="background: none;">
-                <img src="cms.png" alt="cms Logo" style="width:120px; height:auto;" />
-            </div>
-                    <h4>Canteen Management</h4>
-                  <p>Efficiently manage canteen operations, orders, and inventory with automated billing and reporting features.</p>
-     </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="service-card text-center">
-                     <div class="service-icon" style="background: none;">
-                <img src="cms_campus.png" alt="Campus Management System Logo" style="width:120px; height:auto;" />
-            </div>
-                    <h4>Campus Management System</h4>
-                  <p>Comprehensive content management system designed for MES Training College Edathala to streamline academic and administrative operations.</p>
-     </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="service-card text-center">
-                     <div class="service-icon" style="background: none;">
-                <img src="truetax.jpg" alt="True Tax Logo" style="width:120px; height:auto;" />
-            </div>
-                    <h4>Automation Bot For True Tax</h4>
-                  <p>Advanced automation solution for True Tax Accounts & Tax Solutions to streamline accounting, tax compliance, and financial reporting processes with AI-powered intelligence.</p>
-     </div>
-            </div>
-                        <div class="col-lg-4 col-md-6">
-                                <div class="service-card text-center">
-                                         <div class="service-icon" style="background: none;">
-                                <img src="mestoakunnukara.png" alt="MES TO Abdulla Memorial College Kunnukara" style="width:120px; height:auto;" />
-                        </div>
-                                        <h4>MES TO - Abdulla Memorial College Kunnukara</h4>
-                                    <p>Tailored campus management and training solutions developed for Abdulla Memorial College Kunnukara to streamline academic and administrative operations.</p>
-         </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="service-card text-center">
-                                <div class="service-icon" style="background: none;">
-                                    <img src="StaffDesk-icon-3.png" alt="Staff Desk Logo" style="width:120px; height:auto;" />
-                                </div>
-                                <h4>Staff Desk</h4>
-                                <p>A professional workforce management solution that helps organizations streamline employee attendance tracking, payroll processing, leave management, and HR operations through a single, efficient platform.</p>
-                            </div>
-                        </div>
-            <!-- Add more products as needed -->
+            <div>&copy; 2026 Insign Tech.</div>
         </div>
     </div>
-</section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="about-text">
-                        <h2 class="display-5 fw-bold mb-4">About Insign Tech Solutions</h2>
-                        <p>Based in the vibrant tech hub of Ernakulam, Kerala, Insign Tech Solutions is your trusted partner for comprehensive IT services. We combine technical expertise with creative innovation to deliver solutions that drive business success.</p>
-                        <p>Our team of experienced professionals is dedicated to staying ahead of technology trends, ensuring that our clients receive cutting-edge solutions that give them a competitive advantage in today's digital landscape.</p>
-                        <div class="stats">
-                            <div class="stat-item">
-                                <span class="stat-number">50+</span>
-                                <span class="stat-label">Projects Completed</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">25+</span>
-                                <span class="stat-label">Happy Clients</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">5+</span>
-                                <span class="stat-label">Years Experience</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center">
-                    <div style="font-size: 20rem; color: rgba(37, 99, 235, 0.1);">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="display-5 fw-bold text-center mb-5">Get In Touch</h2>
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="contact-info">
-                        <h4 class="mb-4">Contact Information</h4>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h6>Location</h6>
-                                <p>24/1701, KC Arcade, Near TV Centre, Csez P.O, Kakkanad, Ernakulam – 682037.</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h6>Phone</h6>
-                                <p>+91 - 9072859922</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h6>Email</h6>
-                                <p>info@insigntechsolutions.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <h6>Business Hours</h6>
-                                <p>Mon - Fri: 9:00 AM - 10:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="contact-form">
-                        <h4 class="mb-4">Send us a Message</h4>
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Your Name" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control" placeholder="Your Email" required>
-                                </div>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Subject" required>
-                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
-                            <button type="submit" class="btn-custom w-100">Send Message</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <p>&copy; 2024 Insign Tech Solutions. All rights reserved. | Designed with <i class="fas fa-heart text-danger"></i></p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JS -->
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Navbar background change on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            }
-        });
-
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        // Observe service cards
-        document.querySelectorAll('.service-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
-        });
-    </script>
 </body>
+
 </html>
